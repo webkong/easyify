@@ -52,7 +52,7 @@ const webpackConfig = merge(baseConfig, {
             root: path.resolve(__dirname, '../../')
         }),
         new webpack.DefinePlugin({
-            'process.env': config.dev
+            'process.env': config.prod
         }),
         new OptimizeCSSPlugin({
             cssProcessorOptions: {
