@@ -35,6 +35,12 @@ const webpackConfig = merge(baseConfig, {
     },
     devtool: false,
     plugins: [
+        new CleanWebpackPlugin(['dist'], {
+            root: path.resolve(__dirname, '../../')
+        }),
+        new webpack.DefinePlugin({
+            'process.env': config.prod
+        }),
         new HtmlWebpackPlugin({
             filename: distProjectDir + "/index.html",
             template: projectDir + "/index.html",
@@ -48,12 +54,6 @@ const webpackConfig = merge(baseConfig, {
         }),
         ...extraHtmlWebpackPlugins,
         new VueLoaderPlugin(),
-        new CleanWebpackPlugin(['dist'], {
-            root: path.resolve(__dirname, '../../')
-        }),
-        new webpack.DefinePlugin({
-            'process.env': config.prod
-        }),
         new OptimizeCSSPlugin({
             cssProcessorOptions: {
                 safe: true

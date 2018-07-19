@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dll": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.dll.conf.js",
-    "dev:sigle": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.dev.conf.js --type=sigle",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.dev.conf.js --type=sigle",
     "dev:multi": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.dev.conf.js --type=multi",
-    "build:sigle": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --type=sigle",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --type=sigle",
     "build:multi": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --type=multi",
-    "dev:vue:sigle": "cross-env NODE_ENV=development VUE=true webpack-dev-server --config build/webpack/webpack.dev.conf.js --type=sigle",
+    "dev:vue": "cross-env NODE_ENV=development VUE=true webpack-dev-server --config build/webpack/webpack.dev.conf.js --type=sigle",
     "dev:vue:multi": "cross-env NODE_ENV=development VUE=true webpack-dev-server --config build/webpack/webpack.dev.conf.js --type=multi",
-    "build:vue:sigle": "cross-env NODE_ENV=production VUE=true webpack --config build/webpack/webpack.prod.conf.js --type=sigle",
+    "build:vue": "cross-env NODE_ENV=production VUE=true webpack --config build/webpack/webpack.prod.conf.js --type=sigle",
     "build:vue:multi": "cross-env NODE_ENV=production VUE=true webpack --config build/webpack/webpack.prod.conf.js --type=multi"
   },
   "keywords": [
@@ -37,6 +37,7 @@
     "cross-env": "^5.1.6",
     "css-loader": "^0.28.11",
     "cssnano": "^4.0.3",
+    "html-webpack-include-assets-plugin": "^1.0.4",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",

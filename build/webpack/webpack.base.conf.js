@@ -19,7 +19,8 @@ const baseConfig = {
     },
     output: {
         path: distProjectDir + '/static/js',
-        filename: "[name].js"
+        filename: "[name].js",
+        // publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
     },
     devtool: "source-map",
     resolve: {
@@ -45,7 +46,7 @@ const baseConfig = {
                 loader: "url-loader",
                 options: {
                     limit: 1000,
-                    name: "../assets/images/[name].[hash:5].[ext]"
+                    name: process.env.NODE_ENV === 'production'? "../assets/images/[name].[hash:5].[ext]": "assets/images/[name].[hash:5].[ext]"
                 }
             },
             {
@@ -53,17 +54,17 @@ const baseConfig = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: '../assets/fonts/[name].[hash:5].[ext]'
+                    name: process.env.NODE_ENV === 'production'? '../assets/fonts/[name].[hash:5].[ext]': 'assets/fonts/[name].[hash:5].[ext]'
                 }
             },
             {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
-                  limit: 10000,
-                  name: '../assets/media/[name].[hash:5].[ext]'
+                    limit: 10000,
+                    name: process.env.NODE_ENV === 'production'? '../assets/media/[name].[hash:5].[ext]': 'assets/media/[name].[hash:5].[ext]'
                 }
-              },
+            },
         ]
     },
     optimization: {

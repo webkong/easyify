@@ -20,8 +20,8 @@ if (type === 'multi') {
     extraEntry = multiBuilder.extraEntry;
     extraHtmlWebpackPlugins = multiBuilder.extraHtmlWebpackPlugins;
 }
-let projectDir = path.resolve(__dirname, '../../src/' + project);
-let distProjectDir = path.resolve(__dirname, '../../dist/' + project);
+let projectDir = path.resolve('./src/' + project);
+let distProjectDir = path.resolve('./dist/'+ project);
 const webpackConfig = merge(baseConfig, {
     module: {
         rules: [{
@@ -33,19 +33,19 @@ const webpackConfig = merge(baseConfig, {
     },
     devtool: false,
     plugins: [
-        new HtmlWebpackPlugin({
-            filename: distProjectDir + "/index.html",
-            template: projectDir + "/index.html",
-            chunks: ["index", "vendor"]
-        }),
-        ...extraHtmlWebpackPlugins,
-        new VueLoaderPlugin(),
         // new CleanWebpackPlugin(['dist'], {
         //     root: path.resolve(__dirname, '../../')
         // }),
         new webpack.DefinePlugin({
             'process.env': config.dev
         }),
+        new HtmlWebpackPlugin({
+            filename: "index.html",
+            template: projectDir + "/index.html",
+            chunks: ["index", "vendor"]
+        }),
+        ...extraHtmlWebpackPlugins,
+        new VueLoaderPlugin(),
         new OptimizeCSSPlugin({
             cssProcessorOptions: {
                 safe: true
@@ -57,16 +57,20 @@ const webpackConfig = merge(baseConfig, {
             ignore: ['.*']
         }]),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require(projectDir + '/static/manifest.json')
-        })
+        // new webpack.DllReferencePlugin({
+        //     context: __dirname,
+        //     manifest: require(projectDir + '/static/manifest.json')
+        // })
     ],
     devServer: {
         host: '0.0.0.0',
-        // hot: true,
+        hot: true,
         // open: true,
-        port: 5000
+        port: 5000,
+        index: 'index.html',
+        contentBase: false,
+        // publicPath: '/src/' + project,
+        compress: true,
         // proxy: {
         //   "/api": {
         //     target: "",
