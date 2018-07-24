@@ -1,4 +1,10 @@
-module.exports = {
+const {
+    project
+} = require('../lib/project');
+
+const conf = require('../../src/' + project + '/config.js');
+console.log(conf);
+module.exports = conf.env || {
     prod: {
         NODE_ENV: '"production"'
     },
