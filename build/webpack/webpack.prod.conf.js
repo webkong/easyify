@@ -73,6 +73,11 @@ const webpackConfig = merge(baseConfig, {
             filename: '../css/[name].[hash:5].css'
         }),
         new CopyWebpackPlugin([{
+            from: projectDir + '/assets',
+            to: distProjectDir + '/assets',
+            ignore: ['.*']
+        }]),
+        new CopyWebpackPlugin([{
             from: projectDir + '/static',
             to: distProjectDir + '/static',
             ignore: ['.*']

@@ -59,24 +59,30 @@ easyify help  # View help
 
 
 ### Config
-
-```
-API: '"http://api.com"'
-
-const api = process.env.API;
+change dirctory to project, `config.js` in this folder.
+```javascript
+{
+  env: { // Environmental variable, can used by `process.env.NODE_ENV` `process.env.API`
+      prod: {
+          NODE_ENV: '"production"',
+          API: ''
+      },
+      dev: {
+          NODE_ENV: '"development"',
+          API: ''
+      },
+      alpha: {
+          NODE_ENV: '"production"',
+          API: ''
+      }
+  },
+  vendor:[
+  ], // dll lib array
+  vue: 'false' // is vue
+}
 ```
 
 ### Useage
-
-1. build dll file
-
-```
-npm run dll <options>
-
-npm run dll-- --project=projectName
-
-```
-2. run server or build  
 
 #### Cmmand
 
@@ -115,6 +121,32 @@ Usage: npm run <command> -- <options>
     help [cmd]         display help for [cmd]
 
 ```
+1. build dll file if necessary
+
+```
+npm run dll <options>
+
+```
+2. run server or build  
+
+#### example
+```bash
+git clone <easyify repo path>
+cd src
+easyify init h5 h5-test
+...
+# open h5-test use your code tool
+# edit config.js
+# if need dll bundle
+# npm run dll -- -P=h5-test -M=false -T=h5
+
+npm run server -- -P=h5-test -T=h5
+
+npm run build -- -P=h5-test -T=h5
+
+```
+
+
 
 ### Deploy
 

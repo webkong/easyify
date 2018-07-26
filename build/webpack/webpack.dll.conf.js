@@ -2,22 +2,20 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {
-    type,
+    multi,
     project
 } = require('../lib/project');
-const {
-    extraEntry
-} = require('../lib/multipages');
-
 
 
 const projectDir = path.resolve(__dirname, '../../src/' + project);
 const conf = require(projectDir + '/config.js');
-
+if(conf.vendor.length === 0){
+    throw new Error('Before dll bundle, you must set the key "vender" in config.js')
+}
 const dllConfig = {
     mode: process.env.NODE_ENV,
     entry: {
-        'vendor': conf.vendor || ['vue/dist/vue.esm.js', 'vue-router', 'axios', 'jquery']
+        'vendor': [...conf.vendor]
     },
     output: {
         path: projectDir + '/static/js',
@@ -38,5 +36,4 @@ const dllConfig = {
         })
     ]
 };
-console.log(dllConfig);
 module.exports = dllConfig;
