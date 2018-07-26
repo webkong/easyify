@@ -122,6 +122,12 @@ Usage: npm run <command> -- <options>
 
 ```
 
+#### build dll file
+
+```
+npm run dll <options>
+```
+
 #### Dev
 
 ```
@@ -129,13 +135,10 @@ npm run server <options>
 ```
 #### Build
 
-1. build dll file if necessary
 
 ```
-npm run dll <options>
-
+npm run build  <options>
 ```
-2. npm run build  
 
 #### example
 ```bash
@@ -147,6 +150,8 @@ easyify init h5 h5-test
 # edit config.js
 # if need dll bundle
 # npm run dll -- -P=h5-test -M=false -T=h5
+
+npm run dll -- -P=h5-test -T=h5
 
 npm run server -- -P=h5-test -T=h5
 
