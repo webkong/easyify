@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const merge = require('webpack-merge')
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -33,8 +34,19 @@ if (gzip === 'true') {
 
 let projectDir = path.resolve(__dirname, '../../src/' + project);
 let distProjectDir = path.resolve(__dirname, '../../dist/' + project);
+// default vender
+    let dllRef = []
+if (config.vender && config.lenght > 0) {
+    dllRef = [
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require(projectDir + '/static/manifest.json')
+        })
+    ]
+}
 
 const webpackConfig = merge(baseConfig, {
+    mode: 'production',
     module: {
         rules: [{
             test: /\.(scss|sass|css)$/,
@@ -48,13 +60,16 @@ const webpackConfig = merge(baseConfig, {
         new CleanWebpackPlugin(['dist'], {
             root: path.resolve(__dirname, '../../')
         }),
+        new UglifyJsPlugin({
+            test: /\.js($|\?)/i
+        }),
         new webpack.DefinePlugin({
             'process.env': config.prod
         }),
         new HtmlWebpackPlugin({
             filename: distProjectDir + "/index.html",
             template: projectDir + "/index.html",
-            chunks: ["index", "vendor"],
+            chunks: ["index"],
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,
@@ -73,11 +88,6 @@ const webpackConfig = merge(baseConfig, {
             filename: '../css/[name].[hash:5].css'
         }),
         new CopyWebpackPlugin([{
-            from: projectDir + '/assets',
-            to: distProjectDir + '/assets',
-            ignore: ['.*']
-        }]),
-        new CopyWebpackPlugin([{
             from: projectDir + '/static',
             to: distProjectDir + '/static',
             ignore: ['.*']
@@ -89,5 +99,5 @@ const webpackConfig = merge(baseConfig, {
         ...extraGzip
     ]
 });
-
+console.log(webpackConfig);
 module.exports = webpackConfig;

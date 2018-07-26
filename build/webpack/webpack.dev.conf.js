@@ -20,6 +20,7 @@ if (multi === 'true') {
 }
 let projectDir = path.resolve('./src/' + project);
 const webpackConfig = merge(baseConfig, {
+    mode: 'development',
     module: {
         rules: [{
             test: /\.(scss|sass|css)$/,
@@ -29,6 +30,17 @@ const webpackConfig = merge(baseConfig, {
         }]
     },
     devtool: false,
+    optimization = {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    chunks: "all"
+                }
+            }
+        }
+    },
     plugins: [
         // new CleanWebpackPlugin(['dist'], {
         //     root: path.resolve(__dirname, '../../')
@@ -54,10 +66,10 @@ const webpackConfig = merge(baseConfig, {
             ignore: ['.*']
         }]),
         new webpack.HotModuleReplacementPlugin(),
-        // new webpack.DllReferencePlugin({
-        //     context: __dirname,
-        //     manifest: require(projectDir + '/static/manifest.json')
-        // })
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require(projectDir + '/static/manifest.json')
+        })
     ],
     devServer: {
         host: '0.0.0.0',

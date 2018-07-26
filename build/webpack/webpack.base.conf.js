@@ -3,6 +3,7 @@ const {
     multi,
     project
 } = require('../lib/project');
+const config = require('../config/index');
 //多页面情况
 let extraEntry = [];
 console.log(multi, project)
@@ -13,6 +14,28 @@ if (multi === 'true') {
 }
 let projectDir = path.resolve(__dirname, '../../src/' + project);
 let distProjectDir = path.resolve(__dirname, '../../dist/' + project);
+
+// defalut vendor
+let optimization = {};
+console.log(config)
+console.log(config.vendor)
+if (config.vendor && config.vendor.length === 0) {
+    optimization = {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    chunks: "all"
+                }
+            }
+        }
+    };
+}
+
+console.log(optimization)
+
+
 const baseConfig = {
     mode: process.env.NODE_ENV,
     entry: {
@@ -29,7 +52,8 @@ const baseConfig = {
         extensions: ['.js', '.vue', '.jsx', '.json'],
         alias: {
             Utils: projectDir + "/utils",
-            Lib: projectDir + "/lib"
+            Lib: projectDir + "/lib",
+            'vue$': 'vue/dist/vue.esm.js'
         }
     },
     module: {
@@ -48,7 +72,7 @@ const baseConfig = {
                 loader: "url-loader",
                 options: {
                     limit: 1000,
-                    name: process.env.NODE_ENV === 'production'? "../assets/images/[name].[hash:5].[ext]": "assets/images/[name].[hash:5].[ext]"
+                    name: process.env.NODE_ENV === 'production' ? "../assets/images/[name].[hash:5].[ext]" : "assets/images/[name].[hash:5].[ext]"
                 }
             },
             {
@@ -56,7 +80,7 @@ const baseConfig = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: process.env.NODE_ENV === 'production'? '../assets/fonts/[name].[hash:5].[ext]': 'assets/fonts/[name].[hash:5].[ext]'
+                    name: process.env.NODE_ENV === 'production' ? '../assets/fonts/[name].[hash:5].[ext]' : 'assets/fonts/[name].[hash:5].[ext]'
                 }
             },
             {
@@ -64,21 +88,11 @@ const baseConfig = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: process.env.NODE_ENV === 'production'? '../assets/media/[name].[hash:5].[ext]': 'assets/media/[name].[hash:5].[ext]'
+                    name: process.env.NODE_ENV === 'production' ? '../assets/media/[name].[hash:5].[ext]' : 'assets/media/[name].[hash:5].[ext]'
                 }
             },
         ]
-    },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: "vendor",
-                    chunks: "all"
-                }
-            }
-        }
     }
+    // optimization: optimization
 };
 module.exports = baseConfig;

@@ -121,13 +121,21 @@ Usage: npm run <command> -- <options>
     help [cmd]         display help for [cmd]
 
 ```
+
+#### Dev
+
+```
+npm run server <options>
+```
+#### Build
+
 1. build dll file if necessary
 
 ```
 npm run dll <options>
 
 ```
-2. run server or build  
+2. npm run build  
 
 #### example
 ```bash

@@ -17,6 +17,7 @@ const config = {
             NODE_ENV: '"production"'
         }
     },
+    vendor:[],
     ...userConf
 };
 module.exports = config;
