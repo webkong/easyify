@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const {
     project,
-    type
+    type,
+    env
 } = require('./project');
 const config = require('../config/index');
 let reg = /\.\S+$/;
@@ -43,13 +44,13 @@ for (let i in pagesPath) {
     extraHtmlWebpackPlugins.push(
         new HtmlWebpackPlugin({
             filename: projectDistDir + i + ".html",
-            template: VUE ? (projectSrcDir + '/index.html') : (pagesDir + '/' + i + ".html"),
+            template: VUE === 'true' ? (projectSrcDir + '/index.html') : (pagesDir + '/' + i + ".html"),
             chunks: [i, "vendor"],
             minify: minify
         }),
         // 给pages 添加 dll
         new HtmlWebpackIncludeAssetsPlugin({
-            assets: ['vendor.dll.js'],
+            assets: env === 'prod' ? ['vendor.dll.js'] : ['static/js/vendor.dll.js'],
             append: false
         })
     );

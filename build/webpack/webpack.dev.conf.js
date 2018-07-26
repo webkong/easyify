@@ -53,11 +53,6 @@ const webpackConfig = merge(baseConfig, {
             to: 'static',
             ignore: ['.*']
         }]),
-        new CopyWebpackPlugin([{
-            from: projectDir + '/assets',
-            to: 'assets',
-            ignore: ['.*']
-        }]),
         new webpack.HotModuleReplacementPlugin(),
         // new webpack.DllReferencePlugin({
         //     context: __dirname,
