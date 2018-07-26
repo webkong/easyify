@@ -1,23 +1,30 @@
 ![logo](./easyify.png)
 
->A workflow for FE, make work smart and easy.
+>A compilation tools for FE, built with webpack4.x, compile faster and smart, make work easier.
 
-### Description
+### what is easyify
 
-A tool built with webapck to solve problems with front-end project engineering.
-It can support build Vue project and H5 project. React project is coming...
+A tool built with webapck to solve problems in front-end engineering.
+It support build Vue project and H5 project. React project is coming...
 
-### Environment
+### Feature
 
->Node >=8.11.0 
->webpack ^4.16.1
->webpack-cli ^3.0.8
+* node 8.11+
+* Webpack 4.16+
+* Vue/H5 application
+* Sigle-page/Multi-page application
+* Multi-project in one repository* 
+* Configurable environment variable
+* Hot reload
+* Gzip
+* Dll bundle
+* One-click deployment
 
 ### Installation
 
-```
+```bash
 clone && cd easyify
-npm i or yarn install
+npm i #or yarn install
 ```
 
 ### Directory
@@ -37,31 +44,54 @@ npm i or yarn install
 
 #### Create project
 
+>You need `easyify-cli` to create a new project quickly.You can also build the project manually, but it must conform to the folder structure.
+
+```bash
+npm i -g easyify-cli
+
+cd <easyifyPath>/src
+
+easyify init <template> <projectName>
+
+easyify list # View avialable templates 
+easyify help  # View help
 ```
-npm run <commends> <options>
+#### Cmmand
+
+```
+npm run help
 ```
 
-H5
 ```
-// H5 single page
-dev -- --project=web-sigle
-build -- --project=web-sigle
+Usage: npm run <command> -- <options>
 
-//H5 multi pages
-dev:multi -- --project=web-multi
-build:multi -- --project=web-multi
-```
+  egs: 
+  npm run server -- --type=h5 --project=test --env=dev --multi=true 
+  npm run server:multi -- --type=h5 --project=test
 
-Vue
-```
-// Vue single page
-npm run dev:vue -- --project=vue-sigle
-npm run build:vue -- --project=vue-sigle
+  Options:
 
+    -V, --version      output the version number
+    -T, --type         type of project that will be operated. default:h5, [h5/vue]
+    -P, --project      project name that will be operated.
+    -E, --env          project compilation environment.default:dev, [prod/alpha/dev]
+    -M, --multi        project compilation environment.default:false, [true/false]
+    -h, --help         output usage information
 
-// Vue multi pages
-npm run dev:vue:multi -- --project=vue-multi
-npm run build:vue:multi -- --project=vue-multi
+  Commands:
+
+    dll                dll bundle
+    server             development mode -- sigle-page
+    server:multi       development mode -- multi-page
+    build              packaged project, env prod. -- sigle-page
+    build:dev          packaged project, env dev. -- sigle-page
+    build:alpha        packaged project, env alpha. -- sigle-page
+    build:multi        packaged project, env prod. -- multi-page
+    build:multi:dev    packaged project, env dev. -- multi-page
+    build:multi:alpha  packaged project, env alpha. -- multi-page
+    deploy:cli         deploy dist to s3. "npm run deploy:cli <profileName> <sourcePaht> <S3Path>"
+    help [cmd]         display help for [cmd]
+
 ```
 
 ### Config
@@ -85,7 +115,7 @@ npm run dll-- --project=projectName
 2. run build 
 
 
-#### Deploy
+### Deploy
 
 #### upload to aws s3
 

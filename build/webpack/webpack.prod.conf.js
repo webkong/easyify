@@ -10,13 +10,13 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const baseConfig = require("./webpack.base.conf");
 const config = require('../config/index');
 const {
-    type,
+    multi,
     project
 } = require('../lib/project');
 //多页面情况
 let extraEntry = [];
 let extraHtmlWebpackPlugins = [];
-if (type === 'multi') {
+if (multi === 'true') {
     const multiBuilder = require("../lib/multipages");
     extraEntry = multiBuilder.extraEntry;
     extraHtmlWebpackPlugins = multiBuilder.extraHtmlWebpackPlugins;

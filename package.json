@@ -4,17 +4,19 @@
   "description": "easy to work, smart workflow.",
   "main": "index.js",
   "scripts": {
+    "help": "node build/bin/help.js",
+    "server:help": "node build/bin/server-help.js",
     "deploy:cli": "node build/deploy/cli.deploy.js",
     "deploy": "node build/deploy/index.js",
-    "dll": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.dll.conf.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.dev.conf.js --type=sigle",
-    "dev:multi": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.dev.conf.js --type=multi",
-    "build": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --type=sigle",
-    "build:multi": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --type=multi",
-    "dev:vue": "cross-env NODE_ENV=development VUE=true webpack-dev-server --config build/webpack/webpack.dev.conf.js --type=sigle",
-    "dev:vue:multi": "cross-env NODE_ENV=development VUE=true webpack-dev-server --config build/webpack/webpack.dev.conf.js --type=multi",
-    "build:vue": "cross-env NODE_ENV=production VUE=true webpack --config build/webpack/webpack.prod.conf.js --type=sigle",
-    "build:vue:multi": "cross-env NODE_ENV=production VUE=true webpack --config build/webpack/webpack.prod.conf.js --type=multi"
+    "dll": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.dll.conf.js --env=prod",
+    "server": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.dev.conf.js --env=dev --multi=false",
+    "server:multi": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.dev.conf.js --env=dev multi=true",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --env=prod --multi=false",
+    "build:dev": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --env=dev --multi=false",
+    "build:alpha": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --env=alpah --multi=false",
+    "build:multi": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --env=prod --multi=true",
+    "build:multi:dev": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --env=dev --multi=true",
+    "build:multi:alpha": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --env=alpha --multi=true"
   },
   "keywords": [
     "easyify",

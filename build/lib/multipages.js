@@ -3,15 +3,16 @@ const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const {
-    project
+    project,
+    type
 } = require('./project');
+const config = require('../config/index');
 let reg = /\.\S+$/;
 let pagesPath = {}; // 存储都页面的路径对象
 let pagesDir = path.resolve(__dirname, '../../src/' + project + '/pages'); //项目多页面的pages目录
 let projectSrcDir = path.resolve(__dirname, '../../src/' + project); //项目多页面的pages目录
 let projectDistDir = '';
-
-let VUE = process.env.VUE || null;
+let VUE = config.vue;
 let minify = undefined;
 if (process.env.NODE_ENV === 'production') {
     minify = {
@@ -20,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
         removeAttributeQuotes: true,
         chunksSortMode: 'dependency'
     };
-    projectDistDir = path.resolve(__dirname, '../../dist/' + project)  + '/'; //项目多页面的pages目录
+    projectDistDir = path.resolve(__dirname, '../../dist/' + project) + '/'; //项目多页面的pages目录
 }
 fs.readdirSync(pagesDir)
     .filter(filename => !reg.test(filename))
@@ -41,7 +42,7 @@ let extraHtmlWebpackPlugins = [];
 for (let i in pagesPath) {
     extraHtmlWebpackPlugins.push(
         new HtmlWebpackPlugin({
-            filename: projectDistDir  + i + ".html",
+            filename: projectDistDir + i + ".html",
             template: VUE ? (projectSrcDir + '/index.html') : (pagesDir + '/' + i + ".html"),
             chunks: [i, "vendor"],
             minify: minify

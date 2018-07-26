@@ -1,11 +1,13 @@
 const path = require("path");
 const {
-    type,
+    multi,
     project
 } = require('../lib/project');
 //多页面情况
 let extraEntry = [];
-if (type === 'multi') {
+console.log(multi, project)
+if (multi === 'true') {
+    console.log('multi xxxxxxx')
     const multiBuilder = require("../lib/multipages");
     extraEntry = multiBuilder.extraEntry;
 }
