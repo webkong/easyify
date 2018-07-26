@@ -13,7 +13,7 @@ It support build Vue project and H5 project. React project is coming...
 * Webpack 4.16+
 * Vue/H5 application
 * Sigle-page/Multi-page application
-* Multi-project in one repository* 
+* Multi-project in one repository
 * Configurable environment variable
 * Hot reload
 * Gzip
@@ -56,6 +56,28 @@ easyify init <template> <projectName>
 easyify list # View avialable templates 
 easyify help  # View help
 ```
+
+
+### Config
+
+```
+API: '"http://api.com"'
+
+const api = process.env.API;
+```
+
+### Useage
+
+1. build dll file
+
+```
+npm run dll <options>
+
+npm run dll-- --project=projectName
+
+```
+2. run server or build  
+
 #### Cmmand
 
 ```
@@ -93,27 +115,6 @@ Usage: npm run <command> -- <options>
     help [cmd]         display help for [cmd]
 
 ```
-
-### Config
-
-```
-API: '"http://api.com"'
-
-const api = process.env.API;
-```
-
-### Useage
-
-1. build dll file
-
-```
-npm run dll <options>
-
-npm run dll-- --project=projectName
-
-```
-2. run build 
-
 
 ### Deploy
 

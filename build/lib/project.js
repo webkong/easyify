@@ -28,6 +28,7 @@ let multi = getArgv('M') || getArgv('multi') || 'false';
 let type = getArgv('T') || getArgv('type') || 'h5';
 let project = getArgv('P') || getArgv('project') || null;
 let env = getArgv('E') || getArgv('env') || ''; // 环境
+let gzip = getArgv('G') || getArgv('gzip') || 'false'; // 环境
 
 if (!project) {
     console.error('argv error')
@@ -37,7 +38,8 @@ const args = {
     type,
     project,
     multi,
-    env
+    env,
+    gizp
 }
 console.log(args);
 module.exports = args

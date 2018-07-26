@@ -13,15 +13,12 @@ const {
     project
 } = require('../lib/project');
 //多页面情况
-let extraEntry = [];
 let extraHtmlWebpackPlugins = [];
 if (multi === 'true') {
     const multiBuilder = require("../lib/multipages");
-    extraEntry = multiBuilder.extraEntry;
     extraHtmlWebpackPlugins = multiBuilder.extraHtmlWebpackPlugins;
 }
 let projectDir = path.resolve('./src/' + project);
-let distProjectDir = path.resolve('./dist/'+ project);
 const webpackConfig = merge(baseConfig, {
     module: {
         rules: [{

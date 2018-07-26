@@ -11,16 +11,26 @@ const baseConfig = require("./webpack.base.conf");
 const config = require('../config/index');
 const {
     multi,
-    project
+    project,
+    gzip
 } = require('../lib/project');
 //多页面情况
-let extraEntry = [];
 let extraHtmlWebpackPlugins = [];
 if (multi === 'true') {
     const multiBuilder = require("../lib/multipages");
-    extraEntry = multiBuilder.extraEntry;
     extraHtmlWebpackPlugins = multiBuilder.extraHtmlWebpackPlugins;
 }
+// gizp
+let extraGzip = [];
+if (gzip === 'true') {
+    extraGzip = [
+        new CompressionPlugin({
+            test: /\.(js|css|html)$/,
+            algorithm: 'gzip'
+        })
+    ];
+}
+
 let projectDir = path.resolve(__dirname, '../../src/' + project);
 let distProjectDir = path.resolve(__dirname, '../../dist/' + project);
 
@@ -70,7 +80,8 @@ const webpackConfig = merge(baseConfig, {
         new webpack.DllReferencePlugin({
             context: __dirname,
             manifest: require(projectDir + '/static/manifest.json')
-        })
+        }),
+        ...extraGzip
     ]
 });
 
