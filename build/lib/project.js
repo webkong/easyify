@@ -39,7 +39,7 @@ const args = {
     project,
     multi,
     env,
-    gizp
+    gzip
 }
 console.log(args);
 module.exports = args
