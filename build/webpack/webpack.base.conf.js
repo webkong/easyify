@@ -17,8 +17,6 @@ let distProjectDir = path.resolve(__dirname, '../../dist/' + project);
 
 // defalut vendor
 let optimization = {};
-console.log(config)
-console.log(config.vendor)
 if (config.vendor && config.vendor.length === 0) {
     optimization = {
         splitChunks: {
@@ -33,9 +31,6 @@ if (config.vendor && config.vendor.length === 0) {
     };
 }
 
-console.log(optimization)
-
-
 const baseConfig = {
     mode: process.env.NODE_ENV,
     entry: {
@@ -45,7 +40,7 @@ const baseConfig = {
     output: {
         path: distProjectDir + '/static/js',
         filename: "[name].js",
-        // publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
+        publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
     },
     devtool: "source-map",
     resolve: {

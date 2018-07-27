@@ -3,17 +3,12 @@
  * @version 1.0.4
  */
 let argv = require('yargs').argv;
-console.log(argv);
 const getArgv = (key) => {
     let value = argv[key];
-    console.log(value)
     if (!argv[key]) return false;
     if (isArray(argv[key])) {
         value = value[value.length - 1]
-        console.log(value)
     }
-    console.log(value)
-    console.log('----')
     return value
 }
 
@@ -41,5 +36,4 @@ const args = {
     env,
     gzip
 }
-console.log(args);
 module.exports = args

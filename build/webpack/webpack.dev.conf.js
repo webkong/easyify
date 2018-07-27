@@ -30,7 +30,7 @@ const webpackConfig = merge(baseConfig, {
         }]
     },
     devtool: false,
-    optimization = {
+    optimization: {
         splitChunks: {
             cacheGroups: {
                 commons: {
@@ -51,7 +51,7 @@ const webpackConfig = merge(baseConfig, {
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: projectDir + "/index.html",
-            chunks: ["index", "vendor"]
+            chunks: ["index"]
         }),
         ...extraHtmlWebpackPlugins,
         new VueLoaderPlugin(),

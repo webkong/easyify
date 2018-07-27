@@ -13,6 +13,8 @@ let pagesPath = {}; // 存储都页面的路径对象
 let pagesDir = path.resolve(__dirname, '../../src/' + project + '/pages'); //项目多页面的pages目录
 let projectSrcDir = path.resolve(__dirname, '../../src/' + project); //项目多页面的pages目录
 let projectDistDir = '';
+console.log(config);
+console.log(typeof config.vue)
 let VUE = config.vue;
 let minify = undefined;
 if (process.env.NODE_ENV === 'production') {
@@ -38,17 +40,16 @@ fs.readdirSync(pagesDir)
     });
 // 生成entry
 const extraEntry = pagesPath;
-// 生成HtmlWebpackPlugin
+// // 生成HtmlWebpackPlugin
 let extraHtmlWebpackPlugins = [];
 for (let i in pagesPath) {
     extraHtmlWebpackPlugins.push(
         new HtmlWebpackPlugin({
             filename: projectDistDir + i + ".html",
-            template: VUE === 'true' ? (projectSrcDir + '/index.html') : (pagesDir + '/' + i + ".html"),
-            chunks: [i, "vendor"],
-            minify: minify
+            template: VUE ? (pagesDir + '/' + i + ".html") : (pagesDir + '/' + i + ".html"),
+            chunks: [i],
+            minify: env === 'prod' ? minify : {}
         }),
-        // 给pages 添加 dll
         new HtmlWebpackIncludeAssetsPlugin({
             assets: env === 'prod' ? ['vendor.dll.js'] : ['static/js/vendor.dll.js'],
             append: false
