@@ -11,7 +11,7 @@ const {
 const projectDir = path.resolve(__dirname, '../../src/' + project);
 const conf = require(projectDir + '/config.js');
 if (conf.vendor.length === 0) {
-    throw new Error('Before dll bundle, you must set the key "vender" in config.js')
+    throw new Error('Before dll bundle, you must set the key "vendeor" in config.js')
 }
 const dllConfig = {
     mode: process.env.NODE_ENV,

@@ -13,8 +13,6 @@ let pagesPath = {}; // 存储都页面的路径对象
 let pagesDir = path.resolve(__dirname, '../../src/' + project + '/pages'); //项目多页面的pages目录
 let projectSrcDir = path.resolve(__dirname, '../../src/' + project); //项目多页面的pages目录
 let projectDistDir = '';
-console.log(config);
-console.log(typeof config.vue)
 let VUE = config.vue;
 let minify = undefined;
 if (process.env.NODE_ENV === 'production') {

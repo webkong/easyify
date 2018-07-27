@@ -6,9 +6,7 @@ const {
 const config = require('../config/index');
 //多页面情况
 let extraEntry = [];
-console.log(multi, project)
 if (multi === 'true') {
-    console.log('multi xxxxxxx')
     const multiBuilder = require("../lib/multipages");
     extraEntry = multiBuilder.extraEntry;
 }
@@ -40,7 +38,7 @@ const baseConfig = {
     output: {
         path: distProjectDir + '/static/js',
         filename: "[name].js",
-        publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
+        // publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
     },
     devtool: "source-map",
     resolve: {

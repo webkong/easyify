@@ -19,6 +19,20 @@ if (multi === 'true') {
     extraHtmlWebpackPlugins = multiBuilder.extraHtmlWebpackPlugins;
 }
 let projectDir = path.resolve('./src/' + project);
+
+// 如果不需要 dll 文件
+const dllRef = [];
+
+if (config.vendor && config.vendor.length > 0) {
+    dllRef = [
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require(projectDir + '/static/manifest.json')
+        })
+    ]
+}
+
+
 const webpackConfig = merge(baseConfig, {
     mode: 'development',
     module: {
@@ -66,10 +80,7 @@ const webpackConfig = merge(baseConfig, {
             ignore: ['.*']
         }]),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require(projectDir + '/static/manifest.json')
-        })
+        ...dllRef
     ],
     devServer: {
         host: '0.0.0.0',
