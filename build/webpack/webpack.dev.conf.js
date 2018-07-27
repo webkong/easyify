@@ -43,7 +43,7 @@ const webpackConfig = merge(baseConfig, {
             ]
         }]
     },
-    devtool: false,
+    devtool: "source-map",
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -65,7 +65,7 @@ const webpackConfig = merge(baseConfig, {
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: projectDir + "/index.html",
-            chunks: ["index"]
+            chunks: ["index",'vendor']
         }),
         ...extraHtmlWebpackPlugins,
         new VueLoaderPlugin(),
@@ -77,6 +77,11 @@ const webpackConfig = merge(baseConfig, {
         new CopyWebpackPlugin([{
             from: projectDir + '/static',
             to: 'static',
+            ignore: ['.*']
+        }]),
+        new CopyWebpackPlugin([{
+            from: projectDir + '/assets',
+            to: 'assets',
             ignore: ['.*']
         }]),
         new webpack.HotModuleReplacementPlugin(),

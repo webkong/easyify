@@ -35,7 +35,7 @@ if (gzip === 'true') {
 let projectDir = path.resolve(__dirname, '../../src/' + project);
 let distProjectDir = path.resolve(__dirname, '../../dist/' + project);
 // default vender
-    let dllRef = []
+let dllRef = []
 if (config.vender && config.lenght > 0) {
     dllRef = [
         new webpack.DllReferencePlugin({
@@ -92,10 +92,7 @@ const webpackConfig = merge(baseConfig, {
             to: distProjectDir + '/static',
             ignore: ['.*']
         }]),
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require(projectDir + '/static/manifest.json')
-        }),
+        ...dllRef,
         ...extraGzip
     ]
 });
