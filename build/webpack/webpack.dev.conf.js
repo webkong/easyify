@@ -69,7 +69,7 @@ const webpackConfig = merge(baseConfig, {
             template: projectDir + "/index.html",
             chunks: ["index"]
         }),
-        ...extraHtmlWebpackPlugins,
+        
         new VueLoaderPlugin(),
         new OptimizeCSSPlugin({
             cssProcessorOptions: {
@@ -87,6 +87,7 @@ const webpackConfig = merge(baseConfig, {
             ignore: ['.*']
         }]),
         new webpack.HotModuleReplacementPlugin(),
+        ...extraHtmlWebpackPlugins,
         ...dllRef
     ],
     devServer: {

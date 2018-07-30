@@ -6,7 +6,7 @@ const {
 const config = require('../config/index');
 //多页面情况
 let extraEntry = [];
-if (multi === 'true') {
+if (multi === 'true' || config.multi) {
     const multiBuilder = require("../lib/multipages");
     extraEntry = multiBuilder.extraEntry;
 }
