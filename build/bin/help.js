@@ -3,7 +3,7 @@ const program = require('commander')
 program
   .version(require('../../package').version)
   .name('npm run')
-  .description('egs: \n  npm run server -- --type=h5 --project=test --env=dev --multi=true \n  npm run server:multi -- --type=h5 --project=test')
+  .description('egs: \n  npm run server -- --type=h5 --project=test \n  npm run server:multi -- --type=h5 --project=test')
   .usage('<command> -- <options>')
   .option('-P, --project', 'project name that will be operated.')
   .option('-E, --env', 'project compilation environment.default:dev, [prod/alpha/dev]')
