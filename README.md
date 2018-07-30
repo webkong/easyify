@@ -2,7 +2,6 @@
 
 ![CircleCI](https://img.shields.io/circleci/project/github/webkong/easyify.svg)[![npm package](https://img.shields.io/npm/v/easyify.svg)](https://www.npmjs.com/package/easyify)![npm](https://img.shields.io/npm/l/easyify.svg)![node](https://img.shields.io/node/v/easyify.svg)
 
-
 >A compilation tools for FE, built with webpack4.x, compile faster and smart, make work easier.
 
 ### what is easyify
@@ -182,6 +181,13 @@ npm run deploy:cli cdn ./dist/vue-multi/ s3://shareit.cdn.app/w/test/
 # run commend: aws --profile cdn s3 sync ./dist/vue-multi/ s3://shareit.cdn.app/w/test/ --delete --exclude=".*"
 # sync success to s3://shareit.cdn.app/w/test/
 ```
+
+### Other
+
+[easyify document](https://easyify.webkong.cn)
+[easyify template](https://github.com/easyify)
+[easyify-cli](https://github.com/webkong/easyify-cli)
+
 
 ### Update Logs
 
