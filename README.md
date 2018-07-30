@@ -1,5 +1,8 @@
 ![logo](./easyify.png)
 
+![CircleCI](https://img.shields.io/circleci/project/github/webkong/easyify.svg)[![npm package](https://img.shields.io/npm/v/easyify.svg)](https://www.npmjs.com/package/easyify)![npm](https://img.shields.io/npm/l/easyify.svg)![node](https://img.shields.io/node/v/easyify.svg)
+
+
 >A compilation tools for FE, built with webpack4.x, compile faster and smart, make work easier.
 
 ### what is easyify
