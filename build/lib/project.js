@@ -2,7 +2,9 @@
  * Created by wangsw on 08/05/2016.
  * @version 1.0.4
  */
-let argv = require('yargs').argv;
+const argv = require('yargs').argv;
+// const config = require('../config/index');
+
 const getArgv = (key) => {
     let value = argv[key];
     if (!argv[key]) return false;
@@ -11,7 +13,6 @@ const getArgv = (key) => {
     }
     return value
 }
-
 const isArray = (arg) => {
     if (typeof arg === 'object') {
         return Object.prototype.toString.call(arg) === '[object Array]';

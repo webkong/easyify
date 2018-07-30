@@ -17,7 +17,7 @@ const {
 } = require('../lib/project');
 //多页面情况
 let extraHtmlWebpackPlugins = [];
-if (multi === 'true') {
+if (config.multi || multi === 'true') {
     const multiBuilder = require("../lib/multipages");
     extraHtmlWebpackPlugins = multiBuilder.extraHtmlWebpackPlugins;
 }
@@ -64,7 +64,7 @@ const webpackConfig = merge(baseConfig, {
             test: /\.js($|\?)/i
         }),
         new webpack.DefinePlugin({
-            'process.env': config.prod
+            'process.env': config.env.prod
         }),
         new HtmlWebpackPlugin({
             filename: distProjectDir + "/index.html",

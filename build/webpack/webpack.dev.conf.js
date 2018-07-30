@@ -8,20 +8,21 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const baseConfig = require("./webpack.base.conf");
 const config = require('../config/index');
+
 const {
     multi,
     project
 } = require('../lib/project');
 //多页面情况
 let extraHtmlWebpackPlugins = [];
-if (multi === 'true') {
+if (config.multi || multi === 'true') {
     const multiBuilder = require("../lib/multipages");
     extraHtmlWebpackPlugins = multiBuilder.extraHtmlWebpackPlugins;
 }
 let projectDir = path.resolve('./src/' + project);
 
 // 如果不需要 dll 文件
-const dllRef = [];
+let dllRef = [];
 
 if (config.vendor && config.vendor.length > 0) {
     dllRef = [
@@ -43,29 +44,30 @@ const webpackConfig = merge(baseConfig, {
             ]
         }]
     },
-    devtool: "source-map",
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: "vendor",
-                    chunks: "all"
-                }
-            }
-        }
-    },
+    // devtool: "source-map",
+    devtool: false,
+    // optimization: {
+    //     splitChunks: {
+    //         cacheGroups: {
+    //             commons: {
+    //                 test: /[\\/]node_modules[\\/]/,
+    //                 name: "vendor",
+    //                 chunks: "all"
+    //             }
+    //         }
+    //     }
+    // },
     plugins: [
         // new CleanWebpackPlugin(['dist'], {
         //     root: path.resolve(__dirname, '../../')
         // }),
         new webpack.DefinePlugin({
-            'process.env': config.dev
+            'process.env': config.env.dev
         }),
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: projectDir + "/index.html",
-            chunks: ["index",'vendor']
+            chunks: ["index"]
         }),
         ...extraHtmlWebpackPlugins,
         new VueLoaderPlugin(),

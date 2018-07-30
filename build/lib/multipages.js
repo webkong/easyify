@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const {
     project,
-    type,
     env
 } = require('./project');
 const config = require('../config/index');

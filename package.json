@@ -9,7 +9,7 @@
     "deploy:cli": "node build/deploy/cli.deploy.js",
     "deploy": "node build/deploy/index.js",
     "dll": "cross-env NODE_ENV=development webpack --config build/webpack/webpack.dll.conf.js --env=prod",
-    "server": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.dev.conf.js --env=dev --multi=false",
+    "server": "webpack-dev-server --config build/webpack/webpack.dev.conf.js --env=dev --multi=false",
     "server:multi": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.dev.conf.js --env=dev --multi=true",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --env=prod --multi=false",
     "build:dev": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.prod.conf.js --env=dev --multi=false",
