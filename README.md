@@ -185,7 +185,9 @@ npm run deploy:cli cdn ./dist/vue-multi/ s3://shareit.cdn.app/w/test/
 ### Other
 
 [easyify document](https://easyify.webkong.cn)
+
 [easyify template](https://github.com/easyify)
+
 [easyify-cli](https://github.com/webkong/easyify-cli)
 
 
