@@ -96,5 +96,4 @@ const webpackConfig = merge(baseConfig, {
         ...extraGzip
     ]
 });
-console.log(webpackConfig);
 module.exports = webpackConfig;
