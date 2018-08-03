@@ -14,7 +14,8 @@ let projectSrcDir = path.resolve(__dirname, '../../src/' + project); //项目多
 let projectDistDir = '';
 let VUE = config.vue;
 let minify = undefined;
-if (process.env.NODE_ENV === 'production') {
+// console.log(config);
+if (env === 'prod') {
     minify = {
         removeComments: true,
         collapseWhitespace: true,
