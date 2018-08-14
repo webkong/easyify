@@ -200,3 +200,7 @@ npm run deploy:cli cdn ./dist/vue-multi/ s3://shareit.cdn.app/w/test/
 
 * Unified configuration environment
 * Streamlined commands
+
+#### v1.1.6
+
+* support flow types

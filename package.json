@@ -1,6 +1,6 @@
 {
   "name": "easyify",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "easy to work, smart workflow.",
   "main": "index.js",
   "scripts": {
