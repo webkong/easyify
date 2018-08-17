@@ -1,6 +1,6 @@
 {
   "name": "easyify",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "easy to work, smart workflow.",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,15 @@
     "Vue",
     "H5"
   ],
-  "author": "wangsw@ushareit.com",
+  "homepage": "http://easyify.webkong.cn",
+  "repository": {
+    "url": "https://github.com/webkong/easyify"
+  },
+  "bugs": {
+    "email": "772930508@qq.com",
+    "url": "https://github.com/webkong/easyify/issues"
+  },
+  "author": "webkong wangsw@ushareit.com",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^9.0.1",
