@@ -38,9 +38,9 @@ const webpackConfig = merge(baseConfig, {
     mode: 'development',
     module: {
         rules: [{
-            test: /\.(scss|sass|css)$/,
+            test: /\.(scss|sass|less|css|styl)$/,
             use: [
-                'style-loader', 'css-loader', 'postcss-loader', 'sass-loader'
+                'style-loader', 'css-loader', 'postcss-loader', 'sass-loader', 'less-loader', 'stylus-loader'
             ]
         }]
     },

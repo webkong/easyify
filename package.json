@@ -1,7 +1,7 @@
 {
   "name": "easyify",
-  "version": "1.1.10",
-  "description": "easy to work, smart workflow.",
+  "version": "1.1.11",
+  "description": "A compilation tools for FE, built with webpack4.x, compile faster and smart, make work easier.",
   "main": "index.js",
   "scripts": {
     "help": "node build/bin/help.js",
@@ -18,9 +18,16 @@
     "webpack",
     "workflow",
     "Vue",
-    "H5"
+    "H5",
+    "Node",
+    "package",
+    "compress",
+    "Tools",
+    "bundle",
+    "es2015",
+    "sass"
   ],
-  "repository":"https://github.com/webkong/easyify",
+  "repository": "https://github.com/webkong/easyify",
   "author": "wangsw@ushareit.com",
   "license": "MIT",
   "devDependencies": {

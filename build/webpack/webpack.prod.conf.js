@@ -50,7 +50,7 @@ const webpackConfig = merge(baseConfig, {
     mode: 'production',
     module: {
         rules: [{
-            test: /\.(scss|sass|css)$/,
+            test: /\.(scss|sass|less|css|styl)$/,
             use: [
                 // v1.1.10 for fix css image path error
                 {
@@ -60,9 +60,8 @@ const webpackConfig = merge(baseConfig, {
                         publicPath: '../../'
                     }
                 },
-                'css-loader', 'postcss-loader', 'sass-loader'
+                'css-loader', 'postcss-loader', 'sass-loader', 'less-loader', 'stylus-loader'
             ]
-
         }]
     },
     devtool: false,
