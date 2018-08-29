@@ -103,8 +103,8 @@ npm run help
 Usage: npm run <command> -- <options>
 
   egs: 
-  npm run server -- --project=test
-  npm run server:multi -- --project=test
+  npm run start -- --project=test
+  npm run start:multi -- --project=test
 
   Options:
 
@@ -117,8 +117,8 @@ Usage: npm run <command> -- <options>
   Commands:
 
     dll            dll bundle
-    server         development mode -- sigle-page
-    server:multi   development mode -- multi-page
+    start         development mode -- sigle-page
+    start:multi   development mode -- multi-page
     build          packaged project, env prod. -- sigle-page
     build:multi    packaged project, env prod. -- multi-page
     deploy:cli     deploy dist to s3. "npm run deploy:cli <profileName> <sourcePaht> <S3Path>"
@@ -135,7 +135,7 @@ npm run dll <options>
 #### Dev
 
 ```
-npm run server <options>
+npm run start <options>
 ```
 #### Build
 
@@ -158,7 +158,7 @@ easyify init web h5-test
 
 npm run dll -- -P=h5-test
 
-npm run server -- -P=h5-test
+npm run start -- -P=h5-test
 
 npm run build -- -P=h5-test
 
@@ -210,3 +210,8 @@ npm run deploy:cli cdn ./dist/vue-multi/ s3://shareit.cdn.app/w/test/
 
 * fix build wrong path
 * Adjust the built directory structure
+
+### v1.1.10
+
+* Fix dll packages error
+* Use multi-core compression JavaScript

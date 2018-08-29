@@ -8,8 +8,8 @@
     "deploy:cli": "node build/deploy/cli.deploy.js",
     "deploy": "node build/deploy/index.js",
     "dll": "webpack --config build/webpack/webpack.dll.conf.js --env=prod",
-    "server": "webpack-dev-server --config build/webpack/webpack.dev.conf.js --env=dev --multi=false",
-    "server:multi": "webpack-dev-server --config build/webpack/webpack.dev.conf.js --env=dev --multi=true",
+    "start": "webpack-dev-server --config build/webpack/webpack.dev.conf.js --env=dev --multi=false",
+    "start:multi": "webpack-dev-server --config build/webpack/webpack.dev.conf.js --env=dev --multi=true",
     "build": "webpack --config build/webpack/webpack.prod.conf.js --env=prod --multi=false",
     "build:multi": "webpack --config build/webpack/webpack.prod.conf.js --env=prod --multi=true"
   },
