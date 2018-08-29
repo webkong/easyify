@@ -1,10 +1,12 @@
 const webpack = require("webpack");
 const merge = require('webpack-merge')
 const path = require("path");
+const os = require('os');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+//拆分css样式的插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
@@ -35,8 +37,8 @@ if (gzip === 'true') {
 let projectDir = path.resolve(__dirname, '../../src/' + project);
 let distProjectDir = path.resolve(__dirname, '../../dist/' + project);
 // default vender
-let dllRef = []
-if (config.vender && config.lenght > 0) {
+let dllRef = [];
+if (config.vendor && config.vendor.length > 0) {
     dllRef = [
         new webpack.DllReferencePlugin({
             context: __dirname,
@@ -44,15 +46,23 @@ if (config.vender && config.lenght > 0) {
         })
     ]
 }
-
 const webpackConfig = merge(baseConfig, {
     mode: 'production',
     module: {
         rules: [{
             test: /\.(scss|sass|css)$/,
             use: [
-                MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'
+                // v1.1.10 for fix css image path error
+                {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        // by default it use publicPath in webpackOptions.output
+                        publicPath: '../../'
+                    }
+                },
+                'css-loader', 'postcss-loader', 'sass-loader'
             ]
+
         }]
     },
     devtool: false,
@@ -60,8 +70,11 @@ const webpackConfig = merge(baseConfig, {
         new CleanWebpackPlugin(['dist'], {
             root: path.resolve(__dirname, '../../')
         }),
+        // minify JavaScript
         new UglifyJsPlugin({
-            test: /\.js($|\?)/i
+            test: /\.js($|\?)/i,
+            parallel: true,
+            cache: true
         }),
         new webpack.DefinePlugin({
             'process.env': config.env.prod
@@ -85,7 +98,7 @@ const webpackConfig = merge(baseConfig, {
             }
         }),
         new MiniCssExtractPlugin({
-            filename: 'static/css/[name].[hash:5].css'
+            filename: 'static/css/[name].[hash:5].css',
         }),
         new CopyWebpackPlugin([{
             from: projectDir + '/static/js/',
