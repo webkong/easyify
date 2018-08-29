@@ -205,3 +205,8 @@ npm run deploy:cli cdn ./dist/vue-multi/ s3://shareit.cdn.app/w/test/
 #### v1.1.6
 
 * support flow types
+
+#### v1.1.8
+
+* fix build wrong path
+* Adjust the built directory structure

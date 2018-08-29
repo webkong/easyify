@@ -85,11 +85,11 @@ const webpackConfig = merge(baseConfig, {
             }
         }),
         new MiniCssExtractPlugin({
-            filename: '../css/[name].[hash:5].css'
+            filename: 'static/css/[name].[hash:5].css'
         }),
         new CopyWebpackPlugin([{
-            from: projectDir + '/static',
-            to: distProjectDir + '/static',
+            from: projectDir + '/static/js/',
+            to: distProjectDir + '/static/js/',
             ignore: ['.*']
         }]),
         ...dllRef,

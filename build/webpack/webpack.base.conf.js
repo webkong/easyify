@@ -1,7 +1,8 @@
 const path = require("path");
 const {
     multi,
-    project
+    project,
+    env
 } = require('../lib/project');
 const config = require('../config/index');
 //多页面情况
@@ -36,9 +37,9 @@ const baseConfig = {
         ...extraEntry
     },
     output: {
-        path: distProjectDir + '/static/js',
-        filename: "[name].js",
-        // publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
+        path: distProjectDir,
+        filename: "static/js/[name].js",
+        publicPath: env === 'prod' ? './' : '/'
     },
     devtool: "source-map",
     resolve: {
@@ -65,7 +66,8 @@ const baseConfig = {
                 loader: "url-loader",
                 options: {
                     limit: 1000,
-                    name: process.env.NODE_ENV === 'production' ? "../assets/images/[name].[hash:5].[ext]" : "assets/images/[name].[hash:5].[ext]"
+                    // name: env === 'prod' ? "static/images/[name].[hash:5].[ext]" : "static/images/[name].[hash:5].[ext]"
+                    name: "static/images/[name].[hash:5].[ext]"
                 }
             },
             {
@@ -73,7 +75,7 @@ const baseConfig = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: process.env.NODE_ENV === 'production' ? '../assets/fonts/[name].[hash:5].[ext]' : 'assets/fonts/[name].[hash:5].[ext]'
+                    name: 'static/fonts/[name].[hash:5].[ext]'
                 }
             },
             {
@@ -81,7 +83,7 @@ const baseConfig = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: process.env.NODE_ENV === 'production' ? '../assets/media/[name].[hash:5].[ext]' : 'assets/media/[name].[hash:5].[ext]'
+                    name: 'static/media/[name].[hash:5].[ext]'
                 }
             },
         ]
