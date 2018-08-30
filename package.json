@@ -1,7 +1,7 @@
 {
   "name": "easyify",
   "version": "1.1.12",
-  "description": "A compilation tools for FE, built with webpack4.x, compile faster and smart, make work easier.",
+  "description": "A compilation tools & workflow for FE, built with webpack4.x, compile faster and smart, make work easier.",
   "main": "index.js",
   "scripts": {
     "help": "node build/bin/help.js",
