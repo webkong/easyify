@@ -57,12 +57,14 @@ npm i -g easyify-cli
 
 cd <easyifyPath>/src
 
-easyify init <template> <projectName>
+easyify/ey init <template> <projectName>
 
 # template list web / vuejs
 
-easyify list # View avialable templates
-easyify help  # View help
+easyify/ey list # View avialable templates
+easyify/ey help  # View help
+
+#ey is short name for easyify
 ```
 
 
@@ -149,7 +151,7 @@ npm run build  <options>
 ```bash
 git clone <easyify repo path>
 cd src
-easyify init web h5-test
+easyify/ey init web h5-test
 ...
 # open h5-test use your code tool
 # edit config.js if necessary
