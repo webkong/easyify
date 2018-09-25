@@ -58,7 +58,7 @@ const webpackConfig = merge(baseConfig, {
                         publicPath: '../../'
                     }
                 },
-                'style-loader', 'css-loader', 'postcss-loader'
+                'css-loader', 'postcss-loader'
             ]
         }, {
             test: /\.(scss|sass)$/,
@@ -69,7 +69,7 @@ const webpackConfig = merge(baseConfig, {
                         publicPath: '../../'
                     }
                 },
-                'style-loader', 'css-loader', 'postcss-loader', 'sass-loader'
+                'css-loader', 'postcss-loader', 'sass-loader'
             ]
         }, {
             test: /\.(styl)$/,
@@ -80,7 +80,7 @@ const webpackConfig = merge(baseConfig, {
                         publicPath: '../../'
                     }
                 },
-                'style-loader', 'css-loader', 'postcss-loader', 'stylus-loader'
+                'css-loader', 'postcss-loader', 'stylus-loader'
             ]
         }, {
             test: /\.(less)$/,
@@ -91,7 +91,7 @@ const webpackConfig = merge(baseConfig, {
                         publicPath: '../../'
                     }
                 },
-                'style-loader', 'css-loader', 'postcss-loader', 'less-loader'
+                'css-loader', 'postcss-loader', 'less-loader'
             ]
         }]
     },
