@@ -38,9 +38,24 @@ const webpackConfig = merge(baseConfig, {
     mode: 'development',
     module: {
         rules: [{
-            test: /\.(scss|sass|less|css|styl)$/,
+            test: /\.(css)$/,
             use: [
-                'style-loader', 'css-loader', 'postcss-loader', 'sass-loader', 'less-loader', 'stylus-loader'
+                'style-loader', 'css-loader', 'postcss-loader'
+            ]
+        }, {
+            test: /\.(scss|sass)$/,
+            use: [
+                'style-loader', 'css-loader', 'postcss-loader', 'sass-loader'
+            ]
+        }, {
+            test: /\.(styl)$/,
+            use: [
+                'style-loader', 'css-loader', 'postcss-loader', 'stylus-loader'
+            ]
+        },{
+            test: /\.(less)$/,
+            use: [
+                'style-loader', 'css-loader', 'postcss-loader', 'less-loader'
             ]
         }]
     },
@@ -69,7 +84,7 @@ const webpackConfig = merge(baseConfig, {
             template: projectDir + "/index.html",
             chunks: ["index"]
         }),
-        
+
         new VueLoaderPlugin(),
         new OptimizeCSSPlugin({
             cssProcessorOptions: {

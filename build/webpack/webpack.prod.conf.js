@@ -50,17 +50,48 @@ const webpackConfig = merge(baseConfig, {
     mode: 'production',
     module: {
         rules: [{
-            test: /\.(scss|sass|less|css|styl)$/,
-            use: [
-                // v1.1.10 for fix css image path error
-                {
+            test: /\.(css)$/,
+            use: [{
                     loader: MiniCssExtractPlugin.loader,
                     options: {
                         // by default it use publicPath in webpackOptions.output
                         publicPath: '../../'
                     }
                 },
-                'css-loader', 'postcss-loader', 'sass-loader', 'less-loader', 'stylus-loader'
+                'style-loader', 'css-loader', 'postcss-loader'
+            ]
+        }, {
+            test: /\.(scss|sass)$/,
+            use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        // by default it use publicPath in webpackOptions.output
+                        publicPath: '../../'
+                    }
+                },
+                'style-loader', 'css-loader', 'postcss-loader', 'sass-loader'
+            ]
+        }, {
+            test: /\.(styl)$/,
+            use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        // by default it use publicPath in webpackOptions.output
+                        publicPath: '../../'
+                    }
+                },
+                'style-loader', 'css-loader', 'postcss-loader', 'stylus-loader'
+            ]
+        }, {
+            test: /\.(less)$/,
+            use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        // by default it use publicPath in webpackOptions.output
+                        publicPath: '../../'
+                    }
+                },
+                'style-loader', 'css-loader', 'postcss-loader', 'less-loader'
             ]
         }]
     },

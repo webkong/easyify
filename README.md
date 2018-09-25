@@ -217,3 +217,7 @@ npm run deploy:cli cdn ./dist/vue-multi/ s3://shareit.cdn.app/w/test/
 
 * Fix dll packages error
 * Use multi-core compression JavaScript
+
+### v1.2.0
+
+* Fix CSS loaders bug
