@@ -25,12 +25,17 @@ let projectDir = path.resolve('./src/' + project);
 let dllRef = [];
 
 if (config.vendor && config.vendor.length > 0) {
-    dllRef = [
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require(projectDir + '/static/manifest.json')
-        })
-    ]
+    try {
+        dllRef = [
+            new webpack.DllReferencePlugin({
+                context: __dirname,
+                manifest: require(projectDir + '/static/manifest.json')
+            })
+        ]
+    } catch (error) {
+        throw new Error('There is no manifest.json, need to run <npm run dll xx>')
+    }
+    
 }
 
 
