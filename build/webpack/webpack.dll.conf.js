@@ -14,7 +14,7 @@ if (conf.vendor.length === 0) {
     throw new Error('Before dll bundle, you must set the key "vendeor" in config.js')
 }
 const dllConfig = {
-    mode: process.env.NODE_ENV,
+    mode: env === 'prod' ? 'production' : 'development',
     entry: {
         'vendor': [...conf.vendor]
     },
@@ -32,12 +32,12 @@ const dllConfig = {
         }),
         //创建dll的时候给html添加相应的代码
         
-        new HtmlWebpackPlugin({
-            filename: projectDir + "/index.html",
-            template: projectDir + "/index.html",
-            chunks: ['vendor'],
-            inject: 'body'
-        }),
+        // new HtmlWebpackPlugin({
+        //     filename: projectDir + "/index.html",
+        //     template: projectDir + "/index.html",
+        //     chunks: ['vendor'],
+        //     inject: 'body'
+        // }),
         // new HtmlWebpackIncludeAssetsPlugin({
         //     assets: env === 'prod' ? ['vendor.dll.js'] : ['/static/js/vendor.dll.js'],
         //     append: false

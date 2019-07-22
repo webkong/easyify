@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const {
     project,
-    env
+    env,
+    multi
 } = require('./project');
 const config = require('../config/index');
 let reg = /\.\S+$/;
@@ -16,12 +17,12 @@ let VUE = config.vue;
 let minify = undefined;
 // console.log(config);
 if (env === 'prod') {
-    minify = {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true,
-        chunksSortMode: 'dependency'
-    };
+    // minify = {
+    //     removeComments: true,
+    //     collapseWhitespace: true,
+    //     removeAttributeQuotes: true,
+    //     chunksSortMode: 'dependency'
+    // };
     projectDistDir = path.resolve(__dirname, '../../dist/' + project) + '/'; //项目多页面的pages目录
 }
 fs.readdirSync(pagesDir)
@@ -41,6 +42,7 @@ const extraEntry = pagesPath;
 // // 生成HtmlWebpackPlugin
 let extraHtmlWebpackPlugins = [];
 for (let i in pagesPath) {
+    
     extraHtmlWebpackPlugins.push(
         new HtmlWebpackPlugin({
             filename: projectDistDir + i + ".html",
@@ -49,7 +51,7 @@ for (let i in pagesPath) {
             minify: env === 'prod' ? minify : {}
         }),
         new HtmlWebpackIncludeAssetsPlugin({
-            assets: env === 'prod' ? ['vendor.dll.js'] : ['static/js/vendor.dll.js'],
+            assets: env === 'prod' ? ['../static/js/vendor.dll.js'] : ['static/js/vendor.dll.js'],
             append: false
         })
     );

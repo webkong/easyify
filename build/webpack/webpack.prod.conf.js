@@ -19,6 +19,7 @@ const {
 } = require('../lib/project');
 //多页面情况
 let extraHtmlWebpackPlugins = [];
+console.log(multi)
 if (config.multi || multi === 'true') {
     const multiBuilder = require("../lib/multipages");
     extraHtmlWebpackPlugins = multiBuilder.extraHtmlWebpackPlugins;
@@ -133,6 +134,10 @@ const webpackConfig = merge(baseConfig, {
         new CopyWebpackPlugin([{
             from: projectDir + '/static/js/',
             to: distProjectDir + '/static/js/',
+            ignore: ['.*']
+        },{
+            from: projectDir + '/static/images/',
+            to: 'static/images/',
             ignore: ['.*']
         }]),
         ...dllRef,

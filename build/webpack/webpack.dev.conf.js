@@ -25,17 +25,12 @@ let projectDir = path.resolve('./src/' + project);
 let dllRef = [];
 
 if (config.vendor && config.vendor.length > 0) {
-    try {
-        dllRef = [
-            new webpack.DllReferencePlugin({
-                context: __dirname,
-                manifest: require(projectDir + '/static/manifest.json')
-            })
-        ]
-    } catch (error) {
-        throw new Error('There is no manifest.json, need to run <npm run dll xx>')
-    }
-    
+    dllRef = [
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require(projectDir + '/static/manifest.json')
+        })
+    ]
 }
 
 
@@ -99,6 +94,10 @@ const webpackConfig = merge(baseConfig, {
         new CopyWebpackPlugin([{
             from: projectDir + '/static/js/',
             to: 'static/js/',
+            ignore: ['.*']
+        },{
+            from: projectDir + '/static/images/',
+            to: 'static/images/',
             ignore: ['.*']
         }]),
         // new CopyWebpackPlugin([{

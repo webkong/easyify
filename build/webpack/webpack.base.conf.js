@@ -18,20 +18,19 @@ let distProjectDir = path.resolve(__dirname, '../../dist/' + project);
 let optimization = {};
 if (config.vendor && config.vendor.length === 0) {
     optimization = {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: "vendor",
-                    chunks: "all"
-                }
-            }
-        }
+        // splitChunks: {
+        //     cacheGroups: {
+        //         commons: {
+        //             test: /[\\/]node_modules[\\/]/,
+        //             name: "vendor",
+        //             chunks: "all"
+        //         }
+        //     }
+        // }
     };
 }
 
 const baseConfig = {
-    mode: process.env.NODE_ENV,
     entry: {
         index: projectDir + '/index.js',
         ...extraEntry
@@ -65,7 +64,7 @@ const baseConfig = {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: "url-loader",
                 options: {
-                    limit: 1000,
+                    limit: 5000,
                     // name: env === 'prod' ? "static/images/[name].[hash:5].[ext]" : "static/images/[name].[hash:5].[ext]"
                     name: "static/images/[name].[hash:5].[ext]"
                 }
