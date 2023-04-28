@@ -59,7 +59,7 @@
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.2",
     "node-sass": "^4.9.3",
-    "npm": "^6.4.0",
+    "npm": "^9.6.5",
     "optimize-css-assets-webpack-plugin": "^4.0.3",
     "ora": "^3.0.0",
     "parallel-webpack": "^2.3.0",
